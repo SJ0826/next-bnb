@@ -4,6 +4,8 @@ import AirbnbLogoTextIcon from "../public/static/svg/logo/logo_text.svg";
 import Link from "next/link";
 import palette from "../styles/palette";
 import { useState } from "react";
+import ModalPortal from "./ModalPortal";
+import SignUpModal from "./auth/SignUpModal";
 
 const Header: React.FC = () => {
   const [modalOpened, setModalOpened] = useState(false);
@@ -28,14 +30,9 @@ const Header: React.FC = () => {
         </button>
       </div>
       {modalOpened && (
-        <div className="modal-wrapper">
-          <div
-            className="modal-background"
-            role="presentation"
-            onClick={() => setModalOpened(false)}
-          />
-          <div className="modal-contents"></div>
-        </div>
+        <ModalPortal closePortal={() => setModalOpened(false)}>
+          <SignUpModal />
+        </ModalPortal>
       )}
     </Container>
   );
